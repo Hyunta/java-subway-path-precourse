@@ -18,4 +18,16 @@ public class InputView {
 			return requestMainFunction(scanner);
 		}
 	}
+
+	public static String requestPathFunction(Scanner scanner) {
+		try {
+			System.out.println(REQUEST_FUNCTION);
+			String inputValue = scanner.next();
+			FunctionValidator.validatePathFunction(inputValue);
+			return inputValue;
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+			return requestPathFunction(scanner);
+		}
+	}
 }
