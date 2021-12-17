@@ -36,11 +36,13 @@ public class PathController {
 	}
 
 	private void getMinDistance() {
-
+		String start = InputView.requestStartStation(scanner);
+		String end = InputView.requestEndStation(scanner);
 	}
 
 	private void getMinTime() {
-
+		String start = InputView.requestStartStation(scanner);
+		String end = InputView.requestEndStation(scanner);
 	}
 
 	private void backToMainScreen() {
