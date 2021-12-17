@@ -6,6 +6,9 @@ import subway.view.InputView;
 import subway.view.OutputView;
 
 public class MainController {
+	public static final String REQUEST_PATH = "1";
+	public static final String REQUEST_QUIT = "Q";
+
 	private Scanner scanner;
 
 	public MainController(Scanner scanner) {
@@ -15,12 +18,14 @@ public class MainController {
 	public void run() {
 		OutputView.printMainScreen();
 		String request = InputView.requestMainFunction(scanner);
-		if (request.equals("Q")) {
-			System.exit(0);
-		}
-		if (request.equals("1")) {
+
+		if (request.equals(REQUEST_PATH)) {
 			PathController pathController = new PathController(scanner);
 			pathController.run();
+		}
+
+		if (request.equals(REQUEST_QUIT)) {
+			System.exit(0);
 		}
 	}
 }
