@@ -1,7 +1,10 @@
 package subway.controller;
 
+import java.util.List;
 import java.util.Scanner;
 
+import subway.repository.DistancePathRepository;
+import subway.repository.TimePathRepository;
 import subway.view.InputView;
 import subway.view.OutputView;
 
@@ -38,11 +41,18 @@ public class PathController {
 	private void getMinDistance() {
 		String start = InputView.requestStartStation(scanner);
 		String end = InputView.requestEndStation(scanner);
+		List<String> shortestPath = DistancePathRepository.getShortestPath(start, end);
+		int shortestPathWeight = DistancePathRepository.getShortestPathWeight(start, end);
+		OutputView.printDistanceResult(shortestPath, shortestPathWeight);
+
 	}
 
 	private void getMinTime() {
 		String start = InputView.requestStartStation(scanner);
 		String end = InputView.requestEndStation(scanner);
+		List<String> shortestPath = TimePathRepository.getShortestPath(start, end);
+		int shortestPathWeight = TimePathRepository.getShortestPathWeight(start, end);
+		OutputView.printTimeResult(shortestPath, shortestPathWeight);
 	}
 
 	private void backToMainScreen() {

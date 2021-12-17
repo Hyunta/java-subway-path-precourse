@@ -14,9 +14,17 @@ public class TimePathRepository {
 		addPath();
 	}
 
-	public static void getShortestPath() {
+	public static List<String> getShortestPath(String start, String end) {
 		DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(graph);
-		List<String> shortestPath = dijkstraShortestPath.getPath("v3", "v1").getVertexList();
+		List<String> shortestPath = dijkstraShortestPath.getPath(start, end).getVertexList();
+		double pathWeight = dijkstraShortestPath.getPathWeight(start, end);
+		return shortestPath;
+	}
+
+	public static int getShortestPathWeight(String start, String end) {
+		DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(graph);
+		double weight = dijkstraShortestPath.getPathWeight(start, end);
+		return (int)weight;
 	}
 
 	private static void addPath() {

@@ -7,16 +7,24 @@ import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.WeightedMultigraph;
 
 public class DistancePathRepository {
-	public static final WeightedMultigraph<String, DefaultWeightedEdge> graph = new WeightedMultigraph(DefaultWeightedEdge.class);
+	public static final WeightedMultigraph<String, DefaultWeightedEdge> graph = new WeightedMultigraph(
+		DefaultWeightedEdge.class);
 
 	public static void initDistancePath() {
 		addStations();
 		addPath();
 	}
 
-	public static void getShortestPath() {
+	public static List<String> getShortestPath(String start, String end) {
 		DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(graph);
-		List<String> shortestPath = dijkstraShortestPath.getPath("v3", "v1").getVertexList();
+		List<String> shortestPath = dijkstraShortestPath.getPath(start, end).getVertexList();
+		return shortestPath;
+	}
+
+	public static int getShortestPathWeight(String start, String end) {
+		DijkstraShortestPath dijkstraShortestPath = new DijkstraShortestPath(graph);
+		double weight = dijkstraShortestPath.getPathWeight(start, end);
+		return (int)weight;
 	}
 
 	private static void addPath() {
