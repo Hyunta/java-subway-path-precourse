@@ -24,12 +24,12 @@ public class PathController {
 		String request = InputView.requestPathFunction(scanner);
 
 		if (request.equals(REQUEST_MIN_DISTANCE)) {
-			getMinDistance();
+			showMinDistance();
 			backToMainScreen();
 		}
 
 		if (request.equals(REQUEST_MIN_TIME)) {
-			getMinTime();
+			showMinTime();
 			backToMainScreen();
 		}
 
@@ -38,18 +38,26 @@ public class PathController {
 		}
 	}
 
-	private void getMinDistance() {
+	private void showMinDistance() {
 		String start = InputView.requestStartStation(scanner);
 		String end = InputView.requestEndStation(scanner);
+		if (start.equals(end)) {
+			System.out.println("[ERROR] 출발역과 도착역이 동일합니다.");
+			run();
+		}
 		List<String> shortestPath = DistancePathRepository.getShortestPath(start, end);
 		int shortestPathWeight = DistancePathRepository.getShortestPathWeight(start, end);
 		OutputView.printDistanceResult(shortestPath, shortestPathWeight);
 
 	}
 
-	private void getMinTime() {
+	private void showMinTime() {
 		String start = InputView.requestStartStation(scanner);
 		String end = InputView.requestEndStation(scanner);
+		if (start.equals(end)) {
+			System.out.println("[ERROR] 출발역과 도착역이 동일합니다.");
+			run();
+		}
 		List<String> shortestPath = TimePathRepository.getShortestPath(start, end);
 		int shortestPathWeight = TimePathRepository.getShortestPathWeight(start, end);
 		OutputView.printTimeResult(shortestPath, shortestPathWeight);
